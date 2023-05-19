@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Gallary</title>
+</head>
+<style>
+    *{
+        margin: 0;padding: 0;
+        box-sizing: border-box;
+        text-transform: capitalize;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-weight: normal;
+    }
+    body{
+        background: rgb(22, 21, 21);
+    }
+    .heading{
+        color: white;
+        font-size: 40px;
+        text-align: center;
+        padding: 10px;
+    }
+    .container{
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 15px;
+        justify-content: center;
+        align-content: center;
+        padding: 5px 5%;
+    }
+    .container .main-video{
+        margin-left: 150px;
+        background: #333;
+        border-radius: 5px;
+        padding: 10px;
+    }
+    .container .main-video video{
+        width: 995px;
+        height: 500px;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+    }
+    .container .main-video .title{
+        color: white;
+        font-size: 23px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-weight: 700;
+    }
+    .container .main-video .title span{
+        color: white;
+        margin-left: 60%;
+    }
+    .container .video-list{
+        background: white;
+        border-radius: 5px;
+        height: 520px;
+        overflow-y: scroll;
+    }
+    .container .video-list::-webkit-scrollbar{
+        width: 7px;
+    }
+    .container .video-list::-webkit-scrollbar-track{
+        background: #ccc;
+        border-radius: 50px;
+    }
+    .container .video-list::-webkit-scrollbar-thumb{
+        background: #666;
+        border-radius: 50px;
+    }
+    .container .video-list .vid video{
+        width: 100px;
+        border-radius: 5px;
+    }
+    .container .video-list .vid{
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        background: #f7f7f7;
+        border-radius: 5px;
+        margin: 10px;
+        padding: 10px;
+        border: 1px solid rgba(0,0,0,.1);
+        cursor: pointer;
+    }
+    .container .video-list .vid:hover{
+        background: #eee;
+    }
+    .container .video-list .vid.active{
+        background: rgb(215, 131, 131);
+    }
+    .container .video-list .vid.active .title{
+        color: white;
+    }
+    .container .video-list .vid .title{
+        color: #333;
+        font-size: 17px
+    }
+    @media (max-width:991px){
+        .container .main-video{
+            margin-right: 50px;
+            margin-left: 50px;
+        }
+        .container .main-video video{
+            width: 850px;
+        }
+    }
+    @media (max-width:768px){
+        .container .main-video{
+            margin-right: 50px;
+            margin-left: 50px;
+        }
+        .container .main-video video{
+           width: 600px;
+        }
+    }
+    @media (max-width:430px){
+        .container .main-video video{
+           width: 400px;
+        }
+    }
+</style>
+<body>
+    <h1 class="heading">The Legend Of Hanuman</h1>
+    <h3 class="heading">Season 1</h3>
+    <div class="container">
+        <div class="main-video">
+            <div class="video">
+                <video src="C:\Users\Ritesh\Desktop\Ry flix video\HDMovies4u.Digital-Tu.Jhoothi.Main.Makkaar.2023.720p.NF.WEB-DL.AAC5.1.H.264.mkv" controls muted autoplay></video>
+                <h3 class="title">Tu Zoothi Mein Makkar<span>2023</span></h3>
+            </div>
+        </div>
+    <script>
+        let listVideo = document.querySelectorAll(".video-list .vid");
+        let mainVideo = document.querySelector(".main-video video");
+        let title = document.querySelector(".main-video .title");
+
+        listVideo.forEach(video =>{
+            video.onclick = () =>{
+                listVideo.forEach(vid => vid.classList.remove("active"));
+                video.classList.add("active");
+                if(video.classList.contains("active")){
+                    let src = video.children[0].getAttribute("src");
+                    mainVideo.src = src;
+                    let text = video.children[1].innerHTML;
+                    title.innerHTML = text;
+                };
+            };
+        });
+
+    </script>
+</body>
+</html>
